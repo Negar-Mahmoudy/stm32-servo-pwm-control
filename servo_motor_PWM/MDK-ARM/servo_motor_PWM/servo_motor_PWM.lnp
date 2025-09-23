@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"servo_motor_pwm\startup_stm32f103xb.o"
+"servo_motor_pwm\main.o"
+"servo_motor_pwm\stm32f1xx_it.o"
+"servo_motor_pwm\stm32f1xx_hal_msp.o"
+"servo_motor_pwm\stm32f1xx_hal_gpio_ex.o"
+"servo_motor_pwm\stm32f1xx_hal_tim.o"
+"servo_motor_pwm\stm32f1xx_hal_tim_ex.o"
+"servo_motor_pwm\stm32f1xx_hal.o"
+"servo_motor_pwm\stm32f1xx_hal_rcc.o"
+"servo_motor_pwm\stm32f1xx_hal_rcc_ex.o"
+"servo_motor_pwm\stm32f1xx_hal_gpio.o"
+"servo_motor_pwm\stm32f1xx_hal_dma.o"
+"servo_motor_pwm\stm32f1xx_hal_cortex.o"
+"servo_motor_pwm\stm32f1xx_hal_pwr.o"
+"servo_motor_pwm\stm32f1xx_hal_flash.o"
+"servo_motor_pwm\stm32f1xx_hal_flash_ex.o"
+"servo_motor_pwm\stm32f1xx_hal_exti.o"
+"servo_motor_pwm\system_stm32f1xx.o"
+--strict --scatter "servo_motor_PWM\servo_motor_PWM.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "servo_motor_PWM.map" -o servo_motor_PWM\servo_motor_PWM.axf
