@@ -92,4 +92,4 @@ The PWM period and duty cycle are calculated according to the servo datasheet.
 * **Debounce timer** prevents false triggering from mechanical button noise.
 * Incremental adjustments allow **fine control** of the servo position.
 
-![Servomotor Datasheet](servomotor_datasheet.png)
+![Servomotor Datasheet](https://github.com/Negar-Mahmoudy/stm32-servo-pwm-control/blob/main/images/1.PNG?raw=true)
