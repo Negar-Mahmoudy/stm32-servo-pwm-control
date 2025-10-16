@@ -1,7 +1,7 @@
 # STM32 Servo Motor Control with PWM and Button Input
 
 This project demonstrates how to control a **servo motor** using **PWM (Pulse Width Modulation)** on an STM32 microcontroller.  
-The servo's position is adjusted based on **button inputs**, and **debouncing** is handled using a timer interrupt.
+The servo's position is deined based on **button inputs**, and **debouncing** is handled using a timer interrupt.
 
 ---
 
@@ -11,7 +11,7 @@ The servo's position is adjusted based on **button inputs**, and **debouncing** 
   - **0° position:** duty cycle = 1.5 ms  
   - **90° right:** duty cycle = 2 ms  
   - **90° left:** duty cycle = 1 ms  
-- **Timer 2 (TIM2)** is configured in **PWM mode** to generate the servo signal.  
+- **Timer 2 (TIM2)** is used for generating servo signal **PWM mode**.  
 - **Timer 3 (TIM3)** is used to handle **debouncing** for the buttons with 1 ms intervals.  
 - Two buttons (`BTN1` and `BTN2`) are used to **increase or decrease** the PWM compare value.  
 - A variable `number` holds the current compare value for the PWM signal:
@@ -31,8 +31,8 @@ sConfigOC.Pulse = 18500;     // Initial position
 HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 ````
 
-* Generates PWM signals for the servo.
-* `__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1, number)` updates the duty cycle to move the servo.
+Generates PWM signals for the servo.
+`__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1, number)` updates the duty cycle to move the servo.
 
 ### 2. Timer 3 Initialization (Debounce)
 
@@ -42,7 +42,7 @@ htim3.Init.Period = 10-1; // 1 ms interval
 HAL_TIM_Base_Start_IT(&htim3);
 ```
 
-* Runs every 1 ms to sample button states and handle **bouncing**.
+Runs every 1 ms to sample button states and handle **bouncing**.
 
 ### 3. Button Handling in Timer Interrupt
 
@@ -66,15 +66,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 }
 ```
 
-* Detects stable button presses.
-* Updates `number` to move the servo incrementally.
-* Ensures the PWM duty cycle stays within valid range (17500–19500).
+Detects stable button presses. Then updates `number` to move the servo incrementally.this function also ensures the PWM duty cycle stays within valid range (17500–19500).
 
 ---
 
 ## Hardware Setup
 
-* **STM32 Microcontroller** (e.g., STM32F1 series).
+* **STM32 Microcontroller** 
 * **Servo motor** connected to `TIM2_CH1` (PWM output).
 * **Buttons**:
 
@@ -88,8 +86,6 @@ The PWM period and duty cycle are calculated according to the servo datasheet.
 
 ## Advantages of This Implementation
 
-* Smooth servo movement with **precise PWM control**.
-* **Debounce timer** prevents false triggering from mechanical button noise.
-* Incremental adjustments allow **fine control** of the servo position.
+Smooth servo movement with precise PWM control, and a timer for debounce timer false triggering from button noise.
 
 ![Servomotor Datasheet](https://github.com/Negar-Mahmoudy/stm32-servo-pwm-control/blob/main/images/1.PNG?raw=true)
